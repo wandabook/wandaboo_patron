@@ -3,6 +3,7 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 require_once("api.php");
 use Appwrite\Client;
 use Appwrite\Services\Users;
+use Appwrite\Services\Databases;
 
 // This Appwrite function will be executed every time your function is triggered
 return function ($context) {
@@ -14,16 +15,18 @@ return function ($context) {
         ->setProject(getenv('APPWRITE_FUNCTION_PROJECT_ID'))
         ->setKey($context->req->headers['x-appwrite-key']);
     $users = new Users($client);
-
-    try {
-        $response = $users->list();
-        // Log messages and errors to the Appwrite Console
-        // These logs won't be seen by your end users
-        $context->log('Total users: ' . $response['total']);
-    } catch(Throwable $error) {
-        $context->error('Could not list users: ' . $error->getMessage());
-    }
-       
+    $database = new Databa
+    // try to display all the infomation data return the parameter
+    $context->log(json_encode($context->req->bodyJson));// Object from parsed JSON request body, otherwise string
+    $context->log(json_encode($context->req->headers)); // String key-value pairs of all request headers, keys are lowercase
+    $context->log($context->req->scheme);               // Value of the x-forwarded-proto header, usually http or https
+    $context->log($context->req->method);               // Request method, such as GET, POST, PUT, DELETE, PATCH, etc.
+    $context->log($context->req->url);                  // Full URL, for example: http://awesome.appwrite.io:8000/v1/hooks?limit=12&offset=50
+    $context->log($context->req->host);                 // Hostname from the host header, such as awesome.appwrite.io
+    $context->log($context->req->port);                 // Port from the host header, for example 8000
+    $context->log($context->req->path);                 // Path part of URL, for example /v1/hooks
+    $context->log($context->req->queryString);          // Raw query params string. For example "limit=12&offset=50"
+    $context->log(json_encode($context->req->query))
     // The req object contains the request data
     if($context->req->method ==='POST'){
         if ($context->req->path === '/patron') {
@@ -36,7 +39,7 @@ return function ($context) {
                 'password' => '2ab3940as94ikd2394k'
                 );      
                 // Convertir le tableau PHP en JSON
-                $json_data = json_encode($params);
+                $json_data = json_encode($context->req->bodyJson);
             
                 $api = new API("https://api.libib.com");
                 $response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
