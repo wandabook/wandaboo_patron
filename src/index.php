@@ -24,11 +24,11 @@ return function ($context) {
                 // Convertir le tableau PHP en JSON
                 $json_data = $context->req->bodyJson;
                 $params = array(
-                'first_name' =>  $json_data['first_name'],
-                'last_name' => $json_data['last_name'],
-                'email' => $json_data['email'],
-                'notification_email' => $json_data['notification_email'],
-                'password' => $json_data['password']
+                    'first_name' =>  $json_data['first_name'],
+                    'last_name' => $json_data['last_name'],
+                    'email' => $json_data['email'],
+                    'notification_email' => $json_data['notification_email'],
+                    'password' => $json_data['password']
                 );  
                 $api = new API("https://api.libib.com");
                 $response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
