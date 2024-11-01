@@ -17,8 +17,6 @@ return function ($context) {
     $users = new Users($client);
     $database = new Databases($client);
     // try to display all the infomation data return the parameter
-    $context->log(json_encode($context->req->bodyJson));// Object from parsed JSON request body, otherwise string
-    $context->log(json_encode($context->req->headers)); // String key-value pairs of all request headers, keys are lowercase
     $context->log($context->req->scheme);               // Value of the x-forwarded-proto header, usually http or https
     $context->log($context->req->method);               // Request method, such as GET, POST, PUT, DELETE, PATCH, etc.
     $context->log($context->req->url);                  // Full URL, for example: http://awesome.appwrite.io:8000/v1/hooks?limit=12&offset=50
@@ -26,7 +24,6 @@ return function ($context) {
     $context->log($context->req->port);                 // Port from the host header, for example 8000
     $context->log($context->req->path);                 // Path part of URL, for example /v1/hooks
     $context->log($context->req->queryString);          // Raw query params string. For example "limit=12&offset=50"
-    $context->log(json_encode($context->req->query));
     // The req object contains the request data
     if($context->req->method ==='POST'){
         if ($context->req->path === '/patron') {
