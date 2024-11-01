@@ -33,7 +33,7 @@ return function ($context) {
                 $api = new API("https://api.libib.com");
                 $response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
                     
-                return $context->res->$response;
+                return $context->res->json(['result' =>$response,]);
             }catch(Throwable $error) {
                 $context->error('Could not list users: ' . $error->getMessage() .'Error: ');
                 $context->error('Line: ' . $error->getLine() .'Error: ');
