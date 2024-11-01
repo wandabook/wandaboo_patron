@@ -25,27 +25,28 @@ return function ($context) {
     }
        
     // The req object contains the request data
-    if ($context->req->path === '/patron') {
- try {
-        $params = array(
-        'first_name' => 'Mary',
-        'last_name' => 'Shelley',
-        'email' => 'frankenstein@example.com',
-        'notification_email' => 'frankenstein@example.com,another.email@example.com',
-        'password' => '2ab3940as94ikd2394k'
-        );      
-        // Convertir le tableau PHP en JSON
-        $json_data = json_encode($params);
-    
-        $api = new API("https://api.libib.com");
-        $response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
+    if($context->req->method ==='POST'){
+        if ($context->req->path === '/patron') {
+            try {
+                $params = array(
+                'first_name' => 'Mary',
+                'last_name' => 'Shelley',
+                'email' => 'frankenstein@example.com',
+                'notification_email' => 'frankenstein@example.com,another.email@example.com',
+                'password' => '2ab3940as94ikd2394k'
+                );      
+                // Convertir le tableau PHP en JSON
+                $json_data = json_encode($params);
+            
+                $api = new API("https://api.libib.com");
+                $response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
+                    
+                return $context->res->json(['motto' =>$response,]);
+            }catch(Throwable $error) {
+                $context->error('Could not list users: ' . $error->getMessage());
+            }
+        }
         
-      return $context->res->json([
-        'motto' =>$response,
-        ]);
-    }catch(Throwable $error) {
-        $context->error('Could not list users: ' . $error->getMessage());
-    }
     }
     return $context->res->json([
         'motto' => 'Build like a team of hundreds_',
