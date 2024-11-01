@@ -15,7 +15,7 @@ return function ($context) {
         ->setProject(getenv('APPWRITE_FUNCTION_PROJECT_ID'))
         ->setKey($context->req->headers['x-appwrite-key']);
     $users = new Users($client);
-    $database = new Databases($client);
+    //$database = new Databases($client);
     // try to display all the infomation data return the parameter
     $context->log(json_encode($context->req->bodyJson));// Object from parsed JSON request body, otherwise string
     $context->log(json_encode($context->req->headers)); // String key-value pairs of all request headers, keys are lowercase
@@ -28,7 +28,7 @@ return function ($context) {
     $context->log($context->req->queryString);          // Raw query params string. For example "limit=12&offset=50"
     $context->log(json_encode($context->req->query))
     // The req object contains the request data
-    if($context->req->method ==='POST'){
+    /*if($context->req->method ==='POST'){
         if ($context->req->path === '/patron') {
             try {
                 $params = array(
@@ -50,7 +50,7 @@ return function ($context) {
             }
         }
         
-    }
+    }*/
     return $context->res->json([
         'motto' => 'Build like a team of hundreds_',
         'learn' => 'https://appwrite.io/docs',
