@@ -24,7 +24,7 @@ return function ($context) {
                 // Convertir le tableau PHP en JSON
                 $json_data = $context->req->bodyJson;
             
-                $api = new API("https://api.libib.com");
+                //$api = new API("https://api.libib.com");
                 //$response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
                     
                 return $context->res->json(['motto' =>$response,]);
