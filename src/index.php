@@ -40,6 +40,39 @@ return function ($context) {
         }
         
     }
+    /*else
+    if($context->req->method ==='GET'){
+        if ($context->req->path === '/patron') {
+            try {
+                $context->log("".$context->req->bodyJson);
+                // Convertir le tableau PHP en JSON
+                $json_data = $context->req->bodyJson;
+                $api = new API("https://api.libib.com");
+                $response = $api->get("/patrons".'/'.$json_data['patron'],null,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
+                return $context->res->json(['result' =>$response,]);
+            }catch(Throwable $error) {
+                $context->error('Could not list users: ' . $error->getMessage() .'Error: ');
+                $context->error('Line: ' . $error->getLine() .'Error: ');
+            }
+        }
+        
+    }else
+    if($context->req->method ==='DELETE'){
+        if ($context->req->path === '/patron') {
+            try {
+                $context->log("".$context->req->bodyJson);
+                // Convertir le tableau PHP en JSON
+                $json_data = $context->req->bodyJson;
+                $api = new API("https://api.libib.com");
+                $response = $api->delete("/patrons".'/'.$json_data['patron'],null,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
+                return $context->res->json(['result' =>$response,]);
+            }catch(Throwable $error) {
+                $context->error('Could not list users: ' . $error->getMessage() .'Error: ');
+                $context->error('Line: ' . $error->getLine() .'Error: ');
+            }
+        }
+        
+    }*/
     return $context->res->json([
         'motto' => 'Build like a team of hundreds_',
         'learn' => 'https://appwrite.io/docs',
