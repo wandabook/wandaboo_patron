@@ -51,6 +51,7 @@ return function ($context) {
         }
         
     }
+    
     return $context->res->json([
         'motto' => 'Build like a team of hundreds_',
         'learn' => 'https://appwrite.io/docs',
