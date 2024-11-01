@@ -25,10 +25,10 @@ return function ($context) {
                 $json_data = $context->req->bodyJson;
                 $params = array(
                 'first_name' =>  $json_data['first_name'],
-                'last_name' => 'Shelley',
-                'email' => 'frankenstein@example.com',
-                'notification_email' => 'frankenstein@example.com,another.email@example.com',
-                'password' => '2ab3940as94ikd2394k'
+                'last_name' => $json_data['last_name'],
+                'email' => $json_data['email'],
+                'notification_email' => $json_data['notification_email'],
+                'password' => $json_data['password']
                 );  
                 $api = new API("https://api.libib.com");
                 $response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
