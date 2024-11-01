@@ -22,10 +22,10 @@ return function ($context) {
             try {
                 $context->log($context->req->bodyJson);
                 // Convertir le tableau PHP en JSON
-                $json_data = json_encode($context->req->bodyJson);
+                $json_data = $context->req->bodyJson;
             
                 $api = new API("https://api.libib.com");
-                $response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
+                //$response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
                     
                 return $context->res->json(['motto' =>$response,]);
             }catch(Throwable $error) {
