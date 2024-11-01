@@ -3,7 +3,6 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 require_once("api.php");
 use Appwrite\Client;
 use Appwrite\Services\Users;
-use Appwrite\Services\Databases;
 
 // This Appwrite function will be executed every time your function is triggered
 return function ($context) {
@@ -15,7 +14,6 @@ return function ($context) {
         ->setProject(getenv('APPWRITE_FUNCTION_PROJECT_ID'))
         ->setKey($context->req->headers['x-appwrite-key']);
     $users = new Users($client);
-    $database = new Databases($client);
     // try to display all the infomation data return the parameter
     $context->log(json_encode($context->req->bodyJson));// Object from parsed JSON request body, otherwise string
     $context->log(json_encode($context->req->headers)); // String key-value pairs of all request headers, keys are lowercase
