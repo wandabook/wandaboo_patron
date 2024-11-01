@@ -15,7 +15,6 @@ return function ($context) {
         ->setProject(getenv('APPWRITE_FUNCTION_PROJECT_ID'))
         ->setKey($context->req->headers['x-appwrite-key']);
     $users = new Users($client);
-    $database = new Databases($client);
     // The req object contains the request data
     if($context->req->method ==='POST'){
         if ($context->req->path === '/patron') {
@@ -29,10 +28,10 @@ return function ($context) {
                     'email' => $json_data['email'],
                     'notification_email' => $json_data['notification_email'],
                     'password' => $json_data['password']
-                );  
+                );
+               
                 $api = new API("https://api.libib.com");
                 $response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
-                    
                 return $context->res->json(['result' =>$response,]);
             }catch(Throwable $error) {
                 $context->error('Could not list users: ' . $error->getMessage() .'Error: ');
