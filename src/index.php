@@ -23,9 +23,15 @@ return function ($context) {
                 //$context->log("".$context->req->bodyJson);
                 // Convertir le tableau PHP en JSON
                 $json_data = $context->req->bodyJson;
-            $context->log($context->req->bodyJson);
-                //$api = new API("https://api.libib.com");
-                //$response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
+                $params = array(
+                'first_name' =>  $json_data['first_name'],
+                'last_name' => 'Shelley',
+                'email' => 'frankenstein@example.com',
+                'notification_email' => 'frankenstein@example.com,another.email@example.com',
+                'password' => '2ab3940as94ikd2394k'
+                );  
+                $api = new API("https://api.libib.com");
+                $response = $api->post('/patrons',$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
                     
                 return $context->res->json(['motto' =>$response,]);
             }catch(Throwable $error) {
