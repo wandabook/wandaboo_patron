@@ -15,7 +15,7 @@ return function ($context) {
         ->setProject(getenv('APPWRITE_FUNCTION_PROJECT_ID'))
         ->setKey($context->req->headers['x-appwrite-key']);
     $users = new Users($client);
-    $database = new Databa
+    $database = new Databases($client);
     // try to display all the infomation data return the parameter
     $context->log(json_encode($context->req->bodyJson));// Object from parsed JSON request body, otherwise string
     $context->log(json_encode($context->req->headers)); // String key-value pairs of all request headers, keys are lowercase
