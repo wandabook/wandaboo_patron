@@ -30,6 +30,7 @@ return function ($context) {
                 return $context->res->json(['motto' =>$response,]);
             }catch(Throwable $error) {
                 $context->error('Could not list users: ' . $error->getMessage() .'Error: ');
+                $context->error('Line: ' . $error->getLine() .'Error: ');
             }
         }
         
