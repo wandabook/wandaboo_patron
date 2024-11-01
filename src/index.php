@@ -20,7 +20,7 @@ return function ($context) {
     if($context->req->method ==='POST'){
         if ($context->req->path === '/patron') {
             try {
-                //$context->log("".$context->req->bodyJson);
+                $context->log("".$context->req->bodyJson);
                 // Convertir le tableau PHP en JSON
                 $json_data = $context->req->bodyJson;
                 $params = array(
