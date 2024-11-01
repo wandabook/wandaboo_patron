@@ -31,6 +31,7 @@ return function ($context) {
             }catch(Throwable $error) {
                 $context->error('Could not list users: ' . $error->getMessage() .'Error: ');
                 $context->error('Line: ' . $error->getLine() .'Error: ');
+                $context->error($context->req->bodyJson);
             }
         }
         
