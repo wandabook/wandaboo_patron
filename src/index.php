@@ -70,7 +70,33 @@ return function ($context) {
             }catch(Throwable $error) {
                 $context->error('Could not delete users: ' . $error->getMessage() .'Error: ');
                 $context->error('Line: ' . $error->getLine() .'Error: ');
-                return $context->res->json(['result' =>$error->getMessage(),]);
+                return $context->res->json(['error' =>$error->getMessage(),]);
+            }
+        }
+        
+    }else if($context->req->method ==='UPDATE'){
+        if ($context->req->path === '/patron') {
+            try {
+                $context->log("".$context->req->bodyJson);
+                // Convertir le tableau PHP en JSON
+                $json_data = $context->req->bodyJson;
+                $params = array(
+                    //'first_name' =>  $json_data['first_name'],
+                    //'last_name' => $json_data['last_name'],
+                    //'email' => $json_data['email'],
+                    //'notification_email' => $json_data['notification_email'],
+                    //'password' => $json_data['password'],
+                    'patron_id' => $json_data['patron_id'],
+                    'tags'=>$json_data['tags'],
+                    'freeze'=>$json_data['freeze'],
+                );
+               
+                $api = new API("https://api.libib.com");
+                $response = $api->post('/patrons'.'/'.$json_data['barcode'],$params,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
+                return $context->res->json(['result' =>$response,]);
+            }catch(Throwable $error) {
+                $context->error('Update user' . $error->getMessage() .'Error: ');
+                $context->error('Line: ' . $error->getLine() .'Error: ');
             }
         }
         
