@@ -75,7 +75,7 @@ class API {
     }
 
     public function delete($endpoint,$api_key, $api_user) {
-        return $this->callAPI('DELETE', $endpoint,$api_key, $api_user);
+        return $this->callAPI('DELETE', $endpoint,null,$api_key, $api_user);
     }
      // Méthode spécifique pour envoyer un fichier
      public function uploadFile($endpoint, $file_path) {
