@@ -42,8 +42,7 @@ return function ($context) {
         }
         
     }
-    /*else
-    if($context->req->method ==='GET'){
+    else if($context->req->method ==='GET'){
         if ($context->req->path === '/patron') {
             try {
                 $context->log("".$context->req->bodyJson);
@@ -58,7 +57,7 @@ return function ($context) {
             }
         }
         
-    }*/
+    }
     else if($context->req->method ==='DELETE'){
         if ($context->req->path === '/patron') {
             try {
@@ -71,6 +70,7 @@ return function ($context) {
             }catch(Throwable $error) {
                 $context->error('Could not delete users: ' . $error->getMessage() .'Error: ');
                 $context->error('Line: ' . $error->getLine() .'Error: ');
+                return $context->res->json(['result' =>$error->getMessage(),]);
             }
         }
         
