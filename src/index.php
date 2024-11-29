@@ -74,7 +74,7 @@ return function ($context) {
             }
         }
         
-    }else if($context->req->method ==='UPDATE'){
+    }else if($context->req->method ==='PUT'){
         if ($context->req->path === '/patron') {
             try {
                 $context->log("".$context->req->bodyJson);
