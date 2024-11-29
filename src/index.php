@@ -66,7 +66,7 @@ return function ($context) {
                 // Convertir le tableau PHP en JSON
                 $json_data = $context->req->bodyJson;
                 $api = new API("https://api.libib.com");
-                $response = $api->delete("/patrons".'/'.$json_data['patron'],null,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
+                $response = $api->delete("/patrons".'/'.$json_data['barcode'],null,getenv('APPWRITE_API_KEY'),getenv('APPWRITE_API_USER') );
                 return $context->res->json(['result' =>$response,]);
             }catch(Throwable $error) {
                 $context->error('Could not delete users: ' . $error->getMessage() .'Error: ');
