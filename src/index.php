@@ -26,7 +26,7 @@ return function ($context) {
                     'first_name' =>  $json_data['first_name'],
                     'last_name' => $json_data['last_name'],
                     'email' => $json_data['email'],
-                    'notification_email' => $json_data['notification_email'],
+                    'notification_emails' => $json_data['notification_email'],
                     'password' => $json_data['password'],
                     'patron_id' => $json_data['patron_id'],
                     'tags'=>$json_data['tags'],
